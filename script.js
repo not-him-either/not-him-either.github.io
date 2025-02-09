@@ -122,7 +122,6 @@ const lyrics = [
 ];
 
 const bgMusic = document.getElementById('bg-music');
-const lyricsDisplay = document.getElementById('lyrics-display');
 
 const syncedLyrics = [
   { start: 0, text: "I met somebody" },
@@ -141,7 +140,6 @@ bgMusic.addEventListener('timeupdate', () => {
     currentLyricIndex++;
   }
   // Update lyrics display with the active line
-  lyricsDisplay.innerHTML = syncedLyrics[currentLyricIndex].text;
 });
 
 /* Hover and Click Sound Effects */
