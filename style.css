@@ -217,7 +217,7 @@ footer {
 /* New media query for very small devices */
 @media (max-width: 480px) {
   header {
-    height: 70vh;
+    height: 100vh; /* Force full viewport height on mobile */
     padding: 10px;
   }
   header h1 {

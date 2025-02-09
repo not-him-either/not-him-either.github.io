@@ -62,14 +62,29 @@ document.getElementById('interactive-map').addEventListener('click', function() 
 
 /* Call-to-Action Buttons */
 document.getElementById('yesBtn').addEventListener('click', function() {
-  document.getElementById('ctaResponse').innerHTML = "Yay! Prepare for a night filled with magic and memories.";
-  // Launch polished confetti using canvas-confetti
+  playClickSound();
+  // Send an email using EmailJS to bwires947@gmail.com
+  emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+       to_email: "bwires947@gmail.com",
+       message: "I can't wait to celebrate our love and our magical journey together!"
+  })
+  .then(function(response) {
+       console.log("SUCCESS", response.status, response.text);
+  }, function(error) {
+       console.log("FAILED", error);
+  });
+  
+  // Show a "Celebration!" message with animation
+  document.getElementById('ctaResponse').innerHTML = "<span class='celebration'>Celebration!</span>";
+  
+  // Launch confetti/fireworks animation using canvas-confetti
   confetti({
     particleCount: 150,
     spread: 70,
     origin: { y: 0.6 }
   });
-  // Add placeholder link for further details (to be updated later)
+  
+  // Optionally add a placeholder link for further details
   document.getElementById('moreInfo').innerHTML = '<a href="#">Click here for your surprise date plan</a>';
 });
 
