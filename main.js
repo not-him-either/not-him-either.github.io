@@ -1,3 +1,27 @@
+// Initialize global bgMusic and click sound functions
+const bgMusic = document.getElementById('bg-music');  // FIX: define bgMusic to be used in lyric functions
+
+// Auto-play background music when page loads
+window.addEventListener('load', function() {
+  try {
+    bgMusic.play().catch(function(error) {
+      console.log("Audio autoplay failed:", error);
+    });
+  } catch (e) {
+    console.log("Audio play error:", e);
+  }
+});
+
+function playClickSound() {
+  const clickSound = document.getElementById('click-sound');
+  if (clickSound) {
+    clickSound.currentTime = 0;
+    clickSound.play();
+  } else {
+    console.warn("click-sound element not found");
+  }
+}
+
 /* Countdown Timer */
 function updateCountdown() {
   const countdownElement = document.getElementById('countdown');
@@ -61,11 +85,61 @@ document.getElementById('interactive-map').addEventListener('click', function() 
 });
 
 /* Call-to-Action Buttons */
-document.getElementById('yesBtn').addEventListener('click', function() {
+function animateFlowers() {
+  const flowersContainer = document.createElement('div');
+  flowersContainer.className = 'flowers-container';
+  // Increased the number of flowers from 10 to 20
+  for (let i = 0; i < 20; i++) {
+    const flower = document.createElement('div');
+    flower.className = 'flower';
+    flower.textContent = '🌸';
+    flower.style.left = Math.random() * 100 + 'vw';
+    flower.style.animationDelay = Math.random() * 2 + 's';
+    flowersContainer.appendChild(flower);
+  }
+  document.body.appendChild(flowersContainer);
+  setTimeout(() => {
+    flowersContainer.remove();
+  }, 5000);
+}
+
+function createFlowerPopup(x, y) {
+  const popup = document.createElement('div');
+  popup.className = 'flower-popup';
+  popup.style.left = x + 'px';
+  popup.style.top = y + 'px';
+  
+  // Create multiple rings
+  for(let i = 0; i < 3; i++) {
+    const ring = document.createElement('div');
+    ring.className = 'flower-ring';
+    ring.style.animationDelay = `${i * 0.2}s`;
+    popup.appendChild(ring);
+  }
+  
+  document.body.appendChild(popup);
+  setTimeout(() => popup.remove(), 1000);
+}
+
+document.getElementById('yesBtn').addEventListener('click', function(e) {
+  // Create multiple flowers around the button
+  const buttonRect = this.getBoundingClientRect();
+  const centerX = buttonRect.left + buttonRect.width/2;
+  const centerY = buttonRect.top + buttonRect.height/2;
+  
+  for(let i = 0; i < 8; i++) {
+    const angle = (i / 8) * Math.PI * 2;
+    const x = centerX + Math.cos(angle) * 20;
+    const y = centerY + Math.sin(angle) * 20;
+    createFlowerPopup(x, y);
+  }
+  
   playClickSound();
-  // Send an email using EmailJS to bwires947@gmail.com
-  emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
-       to_email: "bwires947@gmail.com",
+  console.log("Yes button pressed: initiating email send");
+  
+  // Send email using EmailJS (preserve the existing service)
+  emailjs.send("service_7272v8p", "template_xpsvnyk", {
+       to_name: "Princess",
        message: "I can't wait to celebrate our love and our magical journey together!"
   })
   .then(function(response) {
@@ -74,112 +148,72 @@ document.getElementById('yesBtn').addEventListener('click', function() {
        console.log("FAILED", error);
   });
   
-  // Show a "Celebration!" message with animation
-  document.getElementById('ctaResponse').innerHTML = "<span class='celebration'>Celebration!</span>";
+  // Trigger the hidden form submission (handled in email.js)
+  document.getElementById("form").dispatchEvent(new Event("submit", { cancelable: true }));
   
-  // Launch confetti/fireworks animation using canvas-confetti
+  // Launch flowers animation
+  animateFlowers();
+  
+  // Launch confetti fireworks animation
   confetti({
     particleCount: 150,
     spread: 70,
     origin: { y: 0.6 }
   });
   
-  // Optionally add a placeholder link for further details
+  // Set the countdown link with desired text.
+  document.getElementById('ctaResponse').innerHTML = '<a href="countdown.html" class="celebration-link">click here darling</a>';
+  
+  // New code: Create animated popup originating from the yes button
+  const yesBtn = this;
+  const popupRect = yesBtn.getBoundingClientRect();  // Renamed from 'rect' to 'popupRect'
+  const popup = document.createElement('div');
+  popup.className = 'celebration-popup';
+  popup.innerHTML = '<p>Flower power and surprises await!</p>';
+  popup.style.position = 'fixed';
+  popup.style.top = popupRect.top + popupRect.height / 2 + 'px';
+  popup.style.left = popupRect.left + popupRect.width / 2 + 'px';
+  popup.style.transform = 'translate(-50%, -50%) scale(0)';
+  popup.style.zIndex = '3000';
+  document.body.appendChild(popup);
+  // Animate the popup to expand (pop effect)
+  requestAnimationFrame(() => {
+    popup.style.transition = 'transform 0.5s ease-out, opacity 0.5s ease-out';
+    popup.style.transform = 'translate(-50%, -50%) scale(1)';
+    popup.style.opacity = '1';
+  });
+  // After the pop, remove the popup (remove extra link addition)
+  setTimeout(() => {
+    popup.style.transition = 'opacity 0.3s ease-out';
+    popup.style.opacity = '0';
+    setTimeout(() => {
+      popup.remove();
+      // Removed extra link appending to preserve the existing link.
+      // The link set above will remain visible.
+    }, 300);
+  }, 500);
+  
+  // Additional animation (if desired)
+  confetti({
+    particleCount: 150,
+    spread: 70,
+    origin: { y: 0.6 }
+  });
   document.getElementById('moreInfo').innerHTML = '<a href="#">Click here for your surprise date plan</a>';
+  
+  // After all animations, redirect to countdown page
+  setTimeout(() => {
+    window.location.href = 'countdown.html';
+  }, 2000); // Wait 2 seconds after animations complete before redirecting
+  
+  // Set the link text while waiting for redirect
+  document.getElementById('ctaResponse').innerHTML = '<p>Redirecting to your surprise...</p>';
 });
 
 document.getElementById('noBtn').addEventListener('click', function() {
+  playClickSound();
   document.getElementById('ctaResponse').innerHTML = "Even if not today, my love remains eternal. Our moment will come.";
 });
-
-/* Synchronized Lyrics Display */
-// Fetch the external lyrics, set them into #lyrics-display, and auto-scroll as the song plays.
-fetch('assets/lyrics.txt')
-  .then(response => response.text())
-  .then(lyricsText => {
-    const allLines = lyricsText.split(/\r?\n/).map(line => line.trim());
-    // Build a nested array of words for each line
-    const lyricsData = allLines.map(line => line.split(' '));
-    const totalWords = lyricsData.reduce((acc, words) => acc + words.length, 0);
-
-    bgMusic.addEventListener('timeupdate', function() {
-      const currentTime = bgMusic.currentTime;
-      const totalDuration = bgMusic.duration;
-      let wordsToHighlight = 0;
-      if (totalDuration > 0) {
-        wordsToHighlight = Math.floor((currentTime / totalDuration) * totalWords);
-      }
-      
-      // Rebuild the lyrics display
-      const displayLines = [];
-      let wordCount = 0;
-      for (let i = 0; i < lyricsData.length; i++) {
-        let lineWords = [];
-        for (let j = 0; j < lyricsData[i].length; j++) {
-          wordCount++;
-          if (wordCount === wordsToHighlight) {
-            lineWords.push('<span class="highlight">' + lyricsData[i][j] + '</span>');
-          } else {
-            lineWords.push(lyricsData[i][j]);
-          }
-        }
-        displayLines.push(lineWords.join(' '));
-      }
-      lyricsDisplay.innerHTML = displayLines.join('\n');
-    });
-  })
-  .catch(err => console.error('Error fetching lyrics:', err));
-
-/* Wrap the lyric highlight logic into a function so we can call it on load. */
-function highlightLyrics(lyricsData, totalWords) {
-  const currentTime = bgMusic.currentTime;
-  const totalDuration = bgMusic.duration;
-  let wordsToHighlight = 0;
-  if (totalDuration > 0) {
-    wordsToHighlight = Math.floor((currentTime / totalDuration) * totalWords);
-  }
-  const displayLines = [];
-  let wordCount = 0;
-  for (let i = 0; i < lyricsData.length; i++) {
-    let lineWords = [];
-    for (let j = 0; j < lyricsData[i].length; j++) {
-      wordCount++;
-      if (wordCount === wordsToHighlight) {
-        lineWords.push('<span class="highlight">' + lyricsData[i][j] + '</span>');
-      } else {
-        lineWords.push(lyricsData[i][j]);
-      }
-    }
-    displayLines.push(lineWords.join(' '));
-  }
-  lyricsDisplay.innerHTML = displayLines.join('\n');
-}
-
-/* Fetch the external lyrics and set up auto-scroll and highlighting. */
-fetch('assets/lyrics.txt')
-  .then(response => response.text())
-  .then(lyricsText => {
-    const allLines = lyricsText.split(/\r?\n/).map(line => line.trim());
-    const lyricsData = allLines.map(line => line.split(' '));
-    const totalWords = lyricsData.reduce((acc, words) => acc + words.length, 0);
-
-    bgMusic.addEventListener('loadedmetadata', function() {
-      bgMusic.play().catch(err => console.error('Autoplay blocked:', err));
-      highlightLyrics(lyricsData, totalWords);
-    });
-
-    bgMusic.addEventListener('timeupdate', function() {
-      highlightLyrics(lyricsData, totalWords);
-
-      /* Auto-scroll in sync with currentTime. */
-      const totalDuration = bgMusic.duration;
-      if (totalDuration > 0) {
-        const scrollRatio = bgMusic.currentTime / totalDuration;
-        lyricsDisplay.scrollTop = scrollRatio * (lyricsDisplay.scrollHeight - lyricsDisplay.clientHeight);
-      }
-    });
-  })
-  .catch(err => console.error('Error fetching lyrics:', err));
 
 /* Smooth Scroll for Anchor Links */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -192,3 +226,5 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 /* Optional: Additional micro-interactions can be added here */
+
+// Reminder: Replace YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, and configure EmailJS (after emailjs.init routine) with your actual details for the email service.

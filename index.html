@@ -2,27 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>For My Dearest Princess</title>
-  <!-- Google Analytics placeholder (if needed) -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_ID_HERE"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'YOUR_ID_HERE');
-  </script> -->
+  <meta name="description" content="A special Valentine's surprise filled with love, memories, and romantic moments.">
+  <meta name="keywords" content="Valentine's Day, love, romance, special surprise">
+  <meta name="author" content="Your Secret Admirer">
+  <meta name="theme-color" content="#ff5f6d">
+  
+  <!-- Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="For My Dearest Princess - A Valentine's Surprise">
+  <meta property="og:description" content="A magical journey of love awaits. Will you be my Valentine? Click to discover our story...">
+  <meta property="og:image" content="assets/images/hero-bg.jpg">
+  <meta property="og:image:alt" content="Valentine's Day Special Surprise">
+  <meta property="og:site_name" content="Valentine's Special">
+  
+  <!-- Twitter specific -->
+  <meta name="twitter:creator" content="@yourusername">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="For My Dearest Princess" />
+  <meta name="twitter:description" content="A journey of whispered memories and dreams. Will you be my Valentine?" />
+  <meta name="twitter:image" content="assets/images/photo2.jpeg" />
+  
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-<body onload="document.getElementById('bg-music').play().catch(err => console.log('Autoplay blocked', err));">
+<body onload="/* Removed auto-play to prevent NotAllowedError */">
   <!-- Countdown Timer -->
   <div id="countdown"></div>
   
   <!-- Background Music with Controls -->
-  <audio id="bg-music" controls autoplay loop preload="auto" playsinline style="position: fixed; bottom: 20px; left: 20px; z-index:1000; opacity:0.8;">
+  <audio id="bg-music" controls loop preload="auto" playsinline autoplay muted style="position: fixed; bottom: 20px; left: 20px; z-index:1000; opacity:0.8;">
     <source src="assets/audio/song-bg.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
+  
+  <!-- Hidden Click Sound Audio -->
+  <audio id="click-sound" src="assets/audio/click.wav" preload="auto"></audio>
   
   <!-- Hero Section with Parallax Effect -->
   <header>
@@ -38,7 +54,7 @@
     <div class="slides">
       <!-- Replace with your actual image URLs -->
       <img src="assets/images/photo1.jpeg" alt="Princess Photo 1" loading="lazy">
-      <img src="photo3.jpeg" alt="Art Piece of Princess" loading="lazy">
+      <img src="assets/images/photo3.jpeg" alt="Photo 3" loading="lazy">
       <img src="assets/images/photo2.jpeg" alt="Princess Photo 2" loading="lazy">
     </div>
     <div class="carousel-buttons">
@@ -84,14 +100,25 @@
     <div id="moreInfo"></div>
   </section>
   
+  <!-- Hidden Form for EmailJS -->
+  <form id="form" style="display: none;">
+    <input type="hidden" name="message" value="I can't wait to celebrate our love and our magical journey together!">
+    <button type="submit" id="button">Send</button>
+  </form>
+  
   <!-- Footer -->
   <footer>
     Crafted with love &hearts; | &copy; 2025
   </footer>
   
-  <!-- Confetti (using canvas-confetti from CDN) -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("KvcwdCEof7Q3jgzMy");
+    })();
+  </script>
   <script src="main.js" defer></script>
+  <script src="email.js" defer></script>
 </body>
 </html>

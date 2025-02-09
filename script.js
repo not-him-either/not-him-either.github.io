@@ -1,5 +1,5 @@
-// Initialize EmailJS (Replace 'YOUR_USER_ID' with your actual EmailJS user ID)
-emailjs.init("YOUR_USER_ID");
+// Initialize EmailJS once with the updated public key
+emailjs.init("KvcwdCEof7Q3jgzMy");
 
 /* Countdown Timer */
 function updateCountdown() {
@@ -82,7 +82,7 @@ document.getElementById('interactive-map').addEventListener('click', function() 
 document.getElementById('yesBtn').addEventListener('click', function() {
   playClickSound();
   // Send an email using EmailJS
-  emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+  emailjs.send("service_7272v8p", "template_xpsvnyk", {
        to_name: "Princess",
        message: "I can't wait to celebrate our love and our magical journey together!"
   })
