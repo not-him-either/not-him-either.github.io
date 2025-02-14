@@ -1,0 +1,400 @@
+/* Reset & Basic Styles */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Georgia', serif;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  animation: fadeBodyIn 1s ease-in-out;
+}
+a { text-decoration: none; }
+
+/* Add optional pulse effect to the body background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  /* Light radial gradient that subtly pulses */
+  background: radial-gradient(circle at center, rgba(255,255,255,0.1), transparent 50%);
+  mix-blend-mode: overlay;
+  animation: pulse 4s infinite alternate ease-in-out;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Parallax Hero Section */
+header {
+  position: relative;
+  height: 100vh;
+  background: url('https://images.unsplash.com/photo-1515871204537-49a5fe66a31f?q=80&w=1382&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+header::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+}
+header h1 {
+  position: relative;
+  color: #fff;
+  font-size: 3em;
+  margin-bottom: 10px;
+  transition: transform 0.3s;
+  background: linear-gradient(to right, #ff5f6d, #ffc371);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeIn 1.5s ease-out forwards, textGlow 3s ease-in-out infinite alternate;
+}
+header p {
+  position: relative;
+  color: #fff;
+  font-size: 1.2em;
+  transition: opacity 0.3s;
+  animation: fadeIn 2s ease-out forwards;
+}
+header a {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  font-size: 1.1em;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 3px;
+  transition: color 0.3s;
+}
+header a:hover { color: #f1c40f; }
+
+header h1, header p {
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+/* Countdown Timer */
+#countdown {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(255,255,255,0.9);
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 1.2em;
+  font-weight: bold;
+  z-index: 1000;
+}
+
+/* Photo Carousel */
+.carousel {
+  position: relative;
+  max-width: 800px;
+  margin: 40px auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.slides {
+  display: flex;
+  transition: transform 0.8s ease-in-out;
+}
+.slides img {
+  width: 100%;
+  flex-shrink: 0;
+  object-fit: cover;
+  height: auto;
+}
+.carousel-buttons {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+.carousel-buttons button {
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: #fff;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.carousel-buttons button:hover { background: rgba(0,0,0,0.7); }
+
+/* Hidden Poem Section */
+.hidden-poem {
+  text-align: center;
+  margin: 40px 20px;
+  transition: all 0.5s ease;
+}
+.hidden-poem button {
+  padding: 10px 20px;
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.hidden-poem button:hover { background: #c0392b; }
+.poem-content {
+  display: none;
+  margin-top: 20px;
+  font-size: 1.2em;
+  font-style: italic;
+  color: #555;
+  line-height: 1.5;
+}
+.extra-poem {
+  display: none;
+  margin-top: 15px;
+  font-size: 1em;
+  color: #777;
+}
+
+/* Interactive Map Placeholder */
+.interactive-map {
+  text-align: center;
+  margin: 40px 20px;
+  padding: 40px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.interactive-map:hover { background: #f1f1f1; }
+.interactive-map p { font-size: 1.1em; }
+
+/* Call-to-Action Section */
+.cta {
+  text-align: center;
+  margin: 40px 20px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+.cta:hover { transform: scale(1.02); }
+.cta h2 { font-size: 2em; margin-bottom: 20px; }
+.cta button {
+  padding: 12px 30px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
+  transition: transform 0.2s, background 0.3s;
+}
+.cta button:hover { transform: scale(1.05); }
+.yes-btn { background: #27ae60; color: #fff; }
+.no-btn { background: #c0392b; color: #fff; }
+#ctaResponse { margin-top: 20px; font-size: 1.1em; }
+#moreInfo a { font-size: 1.2em; text-decoration: underline; color: #27ae60; }
+
+/* Animated Popup for Yes Button */
+.celebration-popup {
+  background: rgba(255,255,255,0.95);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  opacity: 0;
+}
+
+/* Extra Link Style */
+.celebration-extra-link {
+  display: block;
+  margin-top: 10px;
+  font-size: 1.1em;
+  color: #27ae60;
+  text-align: center;
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9em;
+  color: #777;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header h1 { font-size: 2.5em; }
+  header p { font-size: 1em; }
+  .carousel-buttons button { padding: 8px 12px; }
+}
+
+/* New media query for very small devices */
+@media (max-width: 480px) {
+  header {
+    height: 100vh; /* Force full viewport height on mobile */
+    padding: 10px;
+  }
+  header h1 {
+    font-size: 1.8em;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  header p {
+    font-size: 0.9em;
+  }
+  #countdown {
+    font-size: 1em;
+    padding: 8px 10px;
+  }
+  .cta h2 {
+    font-size: 1.5em;
+  }
+  .cta button {
+    font-size: 1em;
+    padding: 10px 20px;
+  }
+  /* Adjust carousel images if needed */
+  .slides img {
+    object-fit: cover;
+  }
+}
+
+/* New keyframes for fadeIn animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* New keyframes for textGlow */
+@keyframes textGlow {
+  0% {
+    text-shadow: 0 0 8px #ffc371;
+  }
+  50% {
+    text-shadow: 0 0 16px #ff5f6d;
+  }
+  100% {
+    text-shadow: 0 0 8px #ffc371;
+  }
+}
+
+/* Fade-in keyframes */
+@keyframes fadeBodyIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Pulse keyframes */
+@keyframes pulse {
+  0% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.5;
+    transform: scale(1.03);
+  }
+}
+
+/* Flowers Animation */
+.flowers-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2000;
+}
+.flower {
+  position: absolute;
+  font-size: 2rem;
+  animation: flowerFall 4s linear forwards;
+}
+@keyframes flowerFall {
+  from {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Button Flower Animation */
+@keyframes flowerExpand {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.flower-popup {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flower-popup::before {
+  content: '🌸';
+  font-size: 2rem;
+  animation: flowerExpand 0.8s ease-out forwards;
+}
+
+.flower-ring {
+  position: absolute;
+  border: 2px solid #ff69b4;
+  border-radius: 50%;
+  animation: flowerExpand 0.8s ease-out forwards;
+}
+
+/* Email Form Styles */
+.field {
+  margin-bottom: 10px;
+}
+
+.field label {
+  display: block;
+  font-size: 12px;
+  color: #777;
+}
+
+.field input {
+  display: block;
+  min-width: 250px;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+input[type="submit"] {
+  display: block;
+  padding: 6px 30px;
+  font-size: 14px;
+  background-color: #4460AA;
+  color: #fff;
+  border: none;
+}
