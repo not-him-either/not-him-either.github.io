@@ -84,7 +84,7 @@ document.getElementById('yesBtn').addEventListener('click', function() {
   // Send an email using EmailJS
   emailjs.send("service_7272v8p", "template_xpsvnyk", {
        to_name: "Princess",
-       message: "I can't wait to celebrate our love and our magical journey together!"
+       message: "I can't wait to celebrate our love and our magical journey together! from V"
   })
   .then(function(response) {
        console.log("SUCCESS", response.status, response.text);
