@@ -2,123 +2,103 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A special Valentine's surprise filled with love, memories, and romantic moments.">
-  <meta name="keywords" content="Valentine's Day, love, romance, special surprise">
-  <meta name="author" content="Your Secret Admirer">
-  <meta name="theme-color" content="#ff5f6d">
-  
-  <!-- Social Media Meta Tags -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="For My Dearest Princess - A Valentine's Surprise">
-  <meta property="og:description" content="A magical journey of love awaits. Will you be my Valentine? Click to discover our story...">
-  <meta property="og:image" content="assets/images/hero-bg.jpg">
-  <meta property="og:image:alt" content="Valentine's Day Special Surprise">
-  <meta property="og:site_name" content="Valentine's Special">
-  
-  <!-- Twitter specific -->
-  <meta name="twitter:creator" content="@yourusername">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="For My Dearest Princess" />
-  <meta name="twitter:description" content="A journey of whispered memories and dreams. Will you be my Valentine?" />
-  <meta name="twitter:image" content="assets/images/photo2.jpeg" />
-  
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>Happy Valentine's Day, Beautiful</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- EmailJS (if needed in the future) -->
+  <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
 </head>
-<body onload="/* Removed auto-play to prevent NotAllowedError */">
-  <!-- Countdown Timer -->
+<body>
+  <!-- (Optional) Countdown Timer -->
   <div id="countdown"></div>
   
   <!-- Background Music with Controls -->
-  <audio id="bg-music" controls loop preload="auto" playsinline autoplay muted style="position: fixed; bottom: 20px; left: 20px; z-index:1000; opacity:0.8;">
-    <source src="assets/audio/song-bg.mp3" type="audio/mpeg">
+  <audio id="bg-music" controls loop style="position: fixed; bottom: 20px; left: 20px; z-index:1000; opacity:0.8;">
+    <source src="song-bg.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
   
-  <!-- Hidden Click Sound Audio -->
-  <audio id="click-sound" src="assets/audio/click.wav" preload="auto"></audio>
+  <!-- Sound Effect Audio Elements (Muted by Default) -->
+  <audio id="hover-sound" src="hover-sound.mp3" preload="auto" muted></audio>
+  <audio id="click-sound" src="click.wav" preload="auto" muted></audio>
   
-  <!-- Hero Section with Parallax Effect -->
+  <!-- Remove Fixed Lyrics Display -->
+  <!-- <div id="lyrics-display">♪ Your lyrics will appear here ♪</div> -->
+  
+  <!-- Hero Section -->
   <header>
-    <div>
-      <h1>For My Dearest Princess</h1>
+    <div class="hero-content">
+      <h1>Happy Valentine's Day, Beautiful</h1>
       <p>A journey of whispered memories and dreams...</p>
-      <a href="#cta" style="position: relative; z-index: 2;">Scroll for a surprise</a>
+      <a href="#poem-section" class="scroll-link">Begin Our Story</a>
     </div>
   </header>
   
-  <!-- Photo Carousel Section -->
+  <!-- Segmented Poem Section -->
+  <section id="poem-section" class="segmented-poem">
+    <div class="stanza" data-delay="0">
+      <p>Happy Valentine's Day, beautiful, my radiant muse,</p>
+    </div>
+    <div class="stanza" data-delay="1">
+      <p>In the quiet mystery of fate, I found a wondrous truth—</p>
+    </div>
+    <div class="stanza" data-delay="2">
+      <p>The novelty of being yours, a serendipity unbound,</p>
+    </div>
+    <div class="stanza" data-delay="3">
+      <p>A destiny whispered in the cosmos, where our souls were found.</p>
+    </div>
+    <div class="stanza" data-delay="4">
+      <p>Never once did I doubt the sacred choice that led me to you;</p>
+    </div>
+    <div class="stanza" data-delay="5">
+      <p>In your eyes, I glimpse galaxies of dreams, profound and ever true.</p>
+    </div>
+    <div class="stanza" data-delay="6">
+      <p>You are more than my beloved—beyond the label of "girlfriend",</p>
+    </div>
+    <div class="stanza" data-delay="7">
+      <p>You are the eternal flame that enkindles my heart, my muse without end.</p>
+    </div>
+  </section>
+  
+  <!-- Carousel Section -->
   <section class="carousel">
     <div class="slides">
-      <!-- Replace with your actual image URLs -->
-      <img src="assets/images/photo1.jpeg" alt="Princess Photo 1" loading="lazy">
-      <img src="assets/images/photo3.jpeg" alt="Photo 3" loading="lazy">
-      <img src="assets/images/photo2.jpeg" alt="Princess Photo 2" loading="lazy">
+      <img src="photo1.jpeg" alt="Her Captivating Smile" loading="lazy">
+      <img src="photo2.jpeg" alt="Artistic Tribute" loading="lazy">
+      <img src="photo3.jpeg" alt="Ethereal Beauty" loading="lazy">
     </div>
     <div class="carousel-buttons">
       <button id="prevBtn">&#10094;</button>
       <button id="nextBtn">&#10095;</button>
     </div>
-  </section>
-  
-  <!-- Hidden Poem / Love Letter Section -->
-  <section class="hidden-poem">
-    <button id="reveal-poem">Reveal Our Secret Poem</button>
-    <div class="poem-content" id="poem-content">
-      <p>
-        Under the soft glow of that enchanted night,<br>
-        When our lips met in tender, whispered light,<br>
-        I traced destiny in your eyes so true,<br>
-        And in that silent moment, I knew my world was you.
-      </p>
-      <button id="reveal-extra" style="margin-top:10px; background:#f39c12; padding:5px 15px; border:none; border-radius:5px; color:#fff;">More</button>
-      <div class="extra-poem" id="extra-poem">
-        <p>
-          As the night deepened and stars aligned,<br>
-          Each heartbeat wrote a verse, uniquely designed.<br>
-          Our souls entwined in that mystical hue—<br>
-          A promise eternal, forever me and you.
-        </p>
-      </div>
+    <div class="carousel-captions">
+      <p class="caption">Celestial Beauty</p>
+      <p class="caption">Mesmerizing Muse</p>
+      <p class="caption">Ethereal Charm</p>
     </div>
   </section>
   
-  <!-- Interactive Map Placeholder Section -->
-  <section class="interactive-map" id="interactive-map">
-    <p>Click here to explore the places where our story began...</p>
+  <!-- Interactive Promise Message Section -->
+  <section class="promise-message">
+    <p>I promise to re-celebrate this day with you, and I’m sorry if I haven’t made it as special as you hoped—my heart is always yours.</p>
   </section>
   
-  <!-- Call-to-Action Section -->
-  <section class="cta" id="cta">
-    <h2>Will you be my Valentine?</h2>
-    <button class="yes-btn" id="yesBtn">Yes</button>
-    <button class="no-btn" id="noBtn">No</button>
-    <div id="ctaResponse"></div>
-    <!-- Placeholder link for further details -->
-    <div id="moreInfo"></div>
-  </section>
-  
-  <!-- Hidden Form for EmailJS -->
-  <form id="form" style="display: none;">
-    <input type="hidden" name="message" value="I can't wait to celebrate our love and our magical journey together!">
-    <button type="submit" id="button">Send</button>
-  </form>
+  <!-- Navigation -->
+  <nav class="navigation">
+    <a href="index.html" class="back-link">Back to Home</a>
+  </nav>
   
   <!-- Footer -->
   <footer>
     Crafted with love &hearts; | &copy; 2025
   </footer>
   
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script>
-    (function() {
-      emailjs.init("KvcwdCEof7Q3jgzMy");
-    })();
-  </script>
-  <script src="main.js" defer></script>
-  <script src="email.js" defer></script>
+  <!-- Confetti Animation (via canvas-confetti CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
+  <!-- External JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
