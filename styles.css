@@ -120,8 +120,8 @@
   .slides img {
     width: 100%;
     flex-shrink: 0;
-    object-fit: cover;
-    aspect-ratio: 16/9;
+    object-fit: contain;
+    max-height: 90vh;
     display: block;
   }
   .carousel-buttons {
