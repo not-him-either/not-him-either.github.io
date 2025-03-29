@@ -461,6 +461,102 @@ section {
     50% { opacity: 1; }
 }
 
+/* Loading Screen */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dark);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease-out;
+}
+
+.loading-screen.fade-out {
+    opacity: 0;
+}
+
+.loading-content {
+    text-align: center;
+}
+
+/* Pulse animation for seconds */
+.pulse-text {
+    animation: pulse-text 0.5s ease-in-out;
+}
+
+@keyframes pulse-text {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+/* Page footer */
+.page-footer {
+    width: 100%;
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Improve mobile touch targets */
+button, 
+.dot, 
+.slider-arrow {
+    min-height: 4.4rem;
+    min-width: 4.4rem;
+}
+
+/* Fallback for no JavaScript */
+.no-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dark);
+    color: var(--light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    z-index: 10000;
+}
+
+/* Enhance accessibility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Focus styles for keyboard navigation */
+:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
 /* Media Queries for larger screens */
 @media (min-width: 768px) {
     .main-title {
@@ -498,6 +594,40 @@ section {
         margin-left: auto;
         margin-right: auto;
         padding: 4rem;
+    }
+}
+
+/* Mobile-specific enhancements */
+@media (max-width: 480px) {
+    html {
+        font-size: 58%; /* Slightly smaller base font size */
+    }
+    
+    .timer-separator {
+        margin: 0 0.2rem;
+    }
+    
+    .timer-block {
+        min-width: 6rem;
+    }
+    
+    .time-value {
+        font-size: 3.8rem;
+    }
+    
+    .slider-arrow {
+        width: 3.6rem;
+        height: 3.6rem;
+    }
+    
+    .dot {
+        width: 0.8rem;
+        height: 0.8rem;
+    }
+    
+    .video-btn {
+        width: 85%;
+        padding: 1.5rem;
     }
 }
 
