@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Birthday!</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="birthday.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Mochiy+Pop+P+One&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="birthday-app">
+        <!-- Background elements -->
+        <div class="confetti-container"></div>
+        <div class="floating-hearts"></div>
+        <div class="fireworks-container"></div>
+        
+        <div class="birthday-content">
+            <!-- Audio control -->
+            <div class="music-player">
+                <button class="music-toggle-btn">
+                    <i class="fas fa-music"></i>
+                    <span class="music-status">Play Music</span>
+                </button>
+                <audio id="birthday-music" loop>
+                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+            
+            <!-- Main header -->
+            <h1 class="birthday-title animate__animated animate__bounceIn">
+                Happy Birthday!
+            </h1>
+            
+            <!-- Birthday cake section -->
+            <div class="cake-container animate__animated animate__zoomIn">
+                <div class="cake">
+                    <div class="cake-base"></div>
+                    <div class="cake-middle"></div>
+                    <div class="cake-top"></div>
+                    <div class="candle-container">
+                        <div class="candle candle-1">
+                            <div class="flame"></div>
+                        </div>
+                        <div class="candle candle-2">
+                            <div class="flame"></div>
+                        </div>
+                        <div class="candle candle-3">
+                            <div class="flame"></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="cake-instruction">Tap to blow out candles!</p>
+            </div>
+            
+            <!-- Main photo -->
+            <div class="birthday-photo-frame animate__animated animate__zoomIn">
+                <img src="assets/images/photo1.jpeg" alt="Birthday Photo" class="main-photo">
+            </div>
+            
+            <!-- Flip card with birthday message -->
+            <div class="card-container animate__animated animate__bounceIn animate__delay-1s">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="card-decoration">
+                                <i class="fas fa-gift"></i>
+                                <p>Tap to open your card</p>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="birthday-message">
+                                <p class="message-text">On this special day, I want to wish you the happiest of birthdays!</p>
+                                <p class="message-text">May your day be filled with joy, laughter and amazing memories.</p>
+                                <p class="message-text">Here's to celebrating you and all the wonderful things you are!</p>
+                                <p class="signature">With love ❤️</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gift box -->
+            <div class="gift-box-container animate__animated animate__bounceIn animate__delay-2s">
+                <div class="gift-box">
+                    <div class="gift-lid"></div>
+                    <div class="gift-box-body"></div>
+                    <div class="gift-ribbon"></div>
+                    <div class="gift-bow"></div>
+                </div>
+                <p class="gift-instruction">Tap to open!</p>
+            </div>
+            
+            <!-- Photo gallery with slideshow -->
+            <div class="photo-memories">
+                <h2 class="memories-title animate__animated animate__fadeIn animate__delay-3s">
+                    Memories to Cherish
+                </h2>
+                
+                <div class="slideshow-container animate__animated animate__fadeIn animate__delay-3s">
+                    <div class="memory-slideshow">
+                        <div class="memory-slide active">
+                            <img src="assets/images/photo2.jpeg" alt="Memory 1" class="memory-photo">
+                        </div>
+                        <div class="memory-slide">
+                            <img src="assets/images/photo3.jpeg" alt="Memory 2" class="memory-photo">
+                        </div>
+                        <div class="memory-slide">
+                            <img src="assets/drawing.jpg" alt="Memory 3" class="memory-photo">
+                        </div>
+                        <div class="memory-slide">
+                            <img src="assets/images/photo3.jpeg" alt="Memory 4" class="memory-photo">
+                        </div>
+                    </div>
+                    
+                    <button class="slideshow-nav prev-slide">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="slideshow-nav next-slide">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    
+                    <div class="slideshow-dots">
+                        <span class="slideshow-dot active" data-index="0"></span>
+                        <span class="slideshow-dot" data-index="1"></span>
+                        <span class="slideshow-dot" data-index="2"></span>
+                        <span class="slideshow-dot" data-index="3"></span>
+                    </div>
+                </div>
+                
+                <!-- Thumbnail gallery -->
+                <div class="memories-gallery animate__animated animate__fadeIn animate__delay-3s">
+                    <div class="memory-item">
+                        <img src="assets/images/photo2.jpeg" alt="Memory 1" class="memory-photo">
+                    </div>
+                    <div class="memory-item">
+                        <img src="assets/images/photo3.jpeg" alt="Memory 2" class="memory-photo">
+                    </div>
+                    <div class="memory-item">
+                        <img src="assets/drawing.jpg" alt="Memory 3" class="memory-photo">
+                    </div>
+                    <div class="memory-item">
+                        <img src="assets/images/photo3.jpeg" alt="Memory 4" class="memory-photo">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Birthday wishes section -->
+            <div class="wishes-section animate__animated animate__fadeIn animate__delay-4s">
+                <h2 class="wishes-title">Birthday Wishes</h2>
+                <div class="wishes-container">
+                    <div class="wish-balloon">
+                        <div class="wish-text">May all your dreams come true!</div>
+                        <div class="balloon">🎈</div>
+                    </div>
+                    <div class="wish-balloon">
+                        <div class="wish-text">Wishing you a wonderful year ahead!</div>
+                        <div class="balloon">🎈</div>
+                    </div>
+                    <div class="wish-balloon">
+                        <div class="wish-text">You deserve all the happiness in the world!</div>
+                        <div class="balloon">🎈</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video button -->
+            <button class="birthday-video-btn animate__animated animate__pulse animate__infinite">
+                <i class="fas fa-video"></i> Watch Your Video
+            </button>
+            
+            <!-- Make a wish section -->
+            <div class="make-wish-section animate__animated animate__fadeIn animate__delay-5s">
+                <h3>Make a Birthday Wish!</h3>
+                <div class="wish-star">✨</div>
+            </div>
+            
+            <!-- Footer with love message -->
+            <footer class="birthday-footer">
+                <p>Created with ❤️ just for you</p>
+            </footer>
+            
+            <!-- Video modal -->
+            <div class="video-modal">
+                <div class="video-modal-content">
+                    <button class="close-modal-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="video-container">
+                        <video controls playsinline>
+                            <source src="assets/video.mp4" type="video/mp4">
+                            Your browser doesn't support video playback.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="birthday.js"></script>
+</body>
+</html>

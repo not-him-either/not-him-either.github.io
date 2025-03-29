@@ -1,104 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Happy Valentine's Day, Beautiful</title>
-  <link rel="stylesheet" href="styles.css">
-  <!-- EmailJS (if needed in the future) -->
-  <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
+    <title>Special Birthday Countdown</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Mochiy+Pop+P+One&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <!-- (Optional) Countdown Timer -->
-  <div id="countdown"></div>
-  
-  <!-- Background Music with Controls -->
-  <audio id="bg-music" controls loop style="position: fixed; bottom: 20px; left: 20px; z-index:1000; opacity:0.8;">
-    <source src="song-bg.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-  
-  <!-- Sound Effect Audio Elements (Muted by Default) -->
-  <audio id="hover-sound" src="hover-sound.mp3" preload="auto" muted></audio>
-  <audio id="click-sound" src="click.wav" preload="auto" muted></audio>
-  
-  <!-- Remove Fixed Lyrics Display -->
-  <!-- <div id="lyrics-display">♪ Your lyrics will appear here ♪</div> -->
-  
-  <!-- Hero Section -->
-  <header>
-    <div class="hero-content">
-      <h1>Happy Valentine's Day, Beautiful</h1>
-      <p>A journey of whispered memories and dreams...</p>
-      <a href="#poem-section" class="scroll-link">Begin Our Story</a>
+    <div id="app" class="countdown-active">
+        <!-- Particles background -->
+        <div class="particles-container">
+            <div id="particles-js"></div>
+        </div>
+        
+        <!-- Countdown Section -->
+        <section id="countdown-section">
+            <div class="container">
+                <h1 class="main-title animate__animated animate__fadeIn">Birthday Countdown</h1>
+                
+                <div class="countdown-wrapper">
+                    <div class="timer-container">
+                        <div class="timer-block">
+                            <div class="time-value" id="days">00</div>
+                            <div class="time-unit">Days</div>
+                        </div>
+                        <div class="timer-separator">:</div>
+                        <div class="timer-block">
+                            <div class="time-value" id="hours">00</div>
+                            <div class="time-unit">Hours</div>
+                        </div>
+                        <div class="timer-separator">:</div>
+                        <div class="timer-block">
+                            <div class="time-value" id="minutes">00</div>
+                            <div class="time-unit">Minutes</div>
+                        </div>
+                        <div class="timer-separator">:</div>
+                        <div class="timer-block">
+                            <div class="time-value" id="seconds">00</div>
+                            <div class="time-unit">Seconds</div>
+                        </div>
+                    </div>
+                    <div class="countdown-caption">
+                        <span class="heartbeat">❤️</span> Until the Special Day <span class="heartbeat">❤️</span>
+                    </div>
+                </div>
+
+                <div class="photo-slider">
+                    <div class="photo-slider-inner">
+                        <div class="photo-slide active">
+                            <img src="assets/images/photo1.jpeg" alt="Photo 1">
+                        </div>
+                        <div class="photo-slide">
+                            <img src="assets/images/photo2.jpeg" alt="Photo 2">
+                        </div>
+                        <div class="photo-slide">
+                            <img src="assets/images/photo3.jpeg" alt="Photo 3">
+                        </div>
+                        <div class="photo-slide">
+                            <img src="assets/images/photo3.jpeg" alt="Photo 4">
+                        </div>
+                        <div class="photo-slide">
+                            <img src="assets/drawing.jpg" alt="Drawing">
+                        </div>
+                    </div>
+                    <div class="slider-controls">
+                        <button class="slider-arrow prev-arrow" aria-label="Previous photo">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="slider-dots">
+                            <span class="dot active" data-index="0"></span>
+                            <span class="dot" data-index="1"></span>
+                            <span class="dot" data-index="2"></span>
+                            <span class="dot" data-index="3"></span>
+                            <span class="dot" data-index="4"></span>
+                        </div>
+                        <button class="slider-arrow next-arrow" aria-label="Next photo">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button class="video-btn pulse-animation">
+                    <i class="fas fa-play-circle"></i> Watch Video
+                </button>
+            </div>
+        </section>
+
+        <!-- Video Modal -->
+        <div class="video-modal">
+            <div class="video-modal-content">
+                <button class="close-modal-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="video-container">
+                    <video controls playsinline>
+                        <source src="assets/video.mp4" type="video/mp4">
+                        Your browser doesn't support video playback.
+                    </video>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transition Overlay -->
+        <div class="transition-overlay">
+            <div class="loader">
+                <div class="heart-loader"></div>
+                <p>Preparing something special...</p>
+            </div>
+        </div>
     </div>
-  </header>
-  
-  <!-- Segmented Poem Section -->
-  <section id="poem-section" class="segmented-poem">
-    <div class="stanza" data-delay="0">
-      <p>Happy Valentine's Day, beautiful, my radiant muse,</p>
-    </div>
-    <div class="stanza" data-delay="1">
-      <p>In the quiet mystery of fate, I found a wondrous truth—</p>
-    </div>
-    <div class="stanza" data-delay="2">
-      <p>The novelty of being yours, a serendipity unbound,</p>
-    </div>
-    <div class="stanza" data-delay="3">
-      <p>A destiny whispered in the cosmos, where our souls were found.</p>
-    </div>
-    <div class="stanza" data-delay="4">
-      <p>Never once did I doubt the sacred choice that led me to you;</p>
-    </div>
-    <div class="stanza" data-delay="5">
-      <p>In your eyes, I glimpse galaxies of dreams, profound and ever true.</p>
-    </div>
-    <div class="stanza" data-delay="6">
-      <p>You are more than my beloved—beyond the label of "girlfriend",</p>
-    </div>
-    <div class="stanza" data-delay="7">
-      <p>You are the eternal flame that enkindles my heart, my muse without end.</p>
-    </div>
-  </section>
-  
-  <!-- Carousel Section -->
-  <section class="carousel">
-    <div class="slides">
-      <img src="photo1.jpeg" alt="Her Captivating Smile" loading="lazy">
-      <img src="photo2.jpeg" alt="Artistic Tribute" loading="lazy">
-      <img src="photo3.jpeg" alt="Ethereal Beauty" loading="lazy">
-    </div>
-    <div class="carousel-buttons">
-      <button id="prevBtn">&#10094;</button>
-      <button id="nextBtn">&#10095;</button>
-    </div>
-    <div class="carousel-captions">
-      <p class="caption">Celestial Beauty</p>
-      <p class="caption">Mesmerizing Muse</p>
-      <p class="caption">Ethereal Charm</p>
-    </div>
-  </section>
-  
-  <!-- Interactive Promise Message Section -->
-  <section class="promise-message">
-    <p>I promise to re-celebrate this day with you, and I’m sorry if I haven’t made it as special as you hoped—my heart is always yours.</p>
-  </section>
-  
-  <!-- Navigation -->
-  <nav class="navigation">
-    <a href="index.html" class="back-link">Back to Home</a>
-  </nav>
-  
-  <!-- Footer -->
-  <footer>
-    Crafted with love &hearts; | &copy; 2025
-  </footer>
-  
-  <!-- Confetti Animation (via canvas-confetti CDN) -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  
-  <!-- External JavaScript -->
-  <script src="script.js"></script>
+
+    <!-- Birthday page will be loaded separately -->
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
