@@ -802,6 +802,99 @@ body {
     box-shadow: 0 0 10px 2px;
 }
 
+/* Photo Display Section */
+.photo-display-section {
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+/* Photo toggle buttons */
+.photo-toggle-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+.photo-toggle-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--birthday-light);
+    border: none;
+    border-radius: 2rem;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 5;
+}
+
+.photo-toggle-btn.active {
+    background: var(--birthday-gradient);
+    box-shadow: 0 0.2rem 1rem rgba(255, 20, 147, 0.4);
+}
+
+.photo-toggle-btn:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Real and art photos */
+.birthday-photo-frame .main-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.5s ease;
+}
+
+.birthday-photo-frame .art-photo,
+.memory-slide .art-photo,
+.memory-item-inner .art-photo {
+    opacity: 0;
+}
+
+#birthday-app.show-art .real-photo {
+    opacity: 0;
+}
+
+#birthday-app.show-art .art-photo {
+    opacity: 1;
+}
+
+/* Memory items for thumbnails */
+.memory-item-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.memory-item-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Memory slide photos */
+.memory-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.5s ease;
+}
+
 /* Media queries */
 @media (min-width: 768px) {
     .birthday-title {

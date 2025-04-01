@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', function() {
         initFlipCard();
         initSlideshow();
         initGiftBox();
-        initVideoModal();
         initWishStar();
         initBalloons();
+        initPhotoToggle();
         
         // Launch initial fireworks
         setTimeout(() => {
@@ -487,30 +487,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 4000);
     }
 
-    // Initialize video modal
-    function initVideoModal() {
-        const videoBtn = document.querySelector('.birthday-video-btn');
-        const videoModal = document.querySelector('.video-modal');
-        const closeBtn = document.querySelector('.close-modal-btn');
-        const video = document.querySelector('.video-modal video');
-        
-        videoBtn.addEventListener('click', function() {
-            videoModal.classList.add('active');
-        });
-        
-        closeBtn.addEventListener('click', function() {
-            videoModal.classList.remove('active');
-            video.pause();
-        });
-        
-        videoModal.addEventListener('click', function(e) {
-            if (e.target === videoModal) {
-                videoModal.classList.remove('active');
-                video.pause();
-            }
-        });
-    }
-
     // Initialize wish star
     function initWishStar() {
         const wishStar = document.querySelector('.wish-star');
@@ -675,5 +651,37 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 2000);
             });
         });
+    }
+
+    // Initialize photo toggle functionality
+    function initPhotoToggle() {
+        const toggleButtons = document.querySelectorAll('.photo-toggle-btn');
+        
+        toggleButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const view = this.dataset.view;
+                
+                // Update active button
+                toggleButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update app class to show real or art photos
+                if (view === 'art') {
+                    document.getElementById('birthday-app').classList.add('show-art');
+                } else {
+                    document.getElementById('birthday-app').classList.remove('show-art');
+                }
+                
+                // Store preference in session storage
+                sessionStorage.setItem('photoView', view);
+            });
+        });
+        
+        // Check for stored preference
+        const storedView = sessionStorage.getItem('photoView');
+        if (storedView) {
+            const button = document.querySelector(`.photo-toggle-btn[data-view="${storedView}"]`);
+            if (button) button.click();
+        }
     }
 });

@@ -34,6 +34,23 @@
                 Happy Birthday!
             </h1>
             
+            <!-- Main photo with toggle -->
+            <div class="photo-display-section">
+                <div class="photo-toggle-container">
+                    <button class="photo-toggle-btn active" data-view="real">
+                        <i class="fas fa-camera"></i> Real
+                    </button>
+                    <button class="photo-toggle-btn" data-view="art">
+                        <i class="fas fa-paint-brush"></i> Art
+                    </button>
+                </div>
+                
+                <div class="birthday-photo-frame animate__animated animate__zoomIn">
+                    <img src="assets/images/real01.png" alt="Birthday Photo" class="main-photo real-photo">
+                    <img src="assets/images/art01.png" alt="Birthday Art" class="main-photo art-photo">
+                </div>
+            </div>
+            
             <!-- Birthday cake section -->
             <div class="cake-container animate__animated animate__zoomIn">
                 <div class="cake">
@@ -53,11 +70,6 @@
                     </div>
                 </div>
                 <p class="cake-instruction">Tap to blow out candles!</p>
-            </div>
-            
-            <!-- Main photo -->
-            <div class="birthday-photo-frame animate__animated animate__zoomIn">
-                <img src="assets/images/photo1.jpeg" alt="Birthday Photo" class="main-photo">
             </div>
             
             <!-- Flip card with birthday message -->
@@ -102,16 +114,20 @@
                 <div class="slideshow-container animate__animated animate__fadeIn animate__delay-3s">
                     <div class="memory-slideshow">
                         <div class="memory-slide active">
-                            <img src="assets/images/photo2.jpeg" alt="Memory 1" class="memory-photo">
+                            <img src="assets/images/real02.png" alt="Memory 1" class="memory-photo real-photo">
+                            <img src="assets/images/art02.png" alt="Memory Art 1" class="memory-photo art-photo">
                         </div>
                         <div class="memory-slide">
-                            <img src="assets/images/photo3.jpeg" alt="Memory 2" class="memory-photo">
+                            <img src="assets/images/real03.jpeg" alt="Memory 2" class="memory-photo real-photo">
+                            <img src="assets/images/art3.png" alt="Memory Art 2" class="memory-photo art-photo">
                         </div>
                         <div class="memory-slide">
-                            <img src="assets/drawing.jpg" alt="Memory 3" class="memory-photo">
+                            <img src="assets/images/real04.jpeg" alt="Memory 3" class="memory-photo real-photo">
+                            <img src="assets/images/art04.png" alt="Memory Art 3" class="memory-photo art-photo">
                         </div>
                         <div class="memory-slide">
-                            <img src="assets/images/photo3.jpeg" alt="Memory 4" class="memory-photo">
+                            <img src="assets/images/real05.jpeg" alt="Memory 4" class="memory-photo real-photo">
+                            <img src="assets/images/art05.png" alt="Memory Art 4" class="memory-photo art-photo">
                         </div>
                     </div>
                     
@@ -133,16 +149,28 @@
                 <!-- Thumbnail gallery -->
                 <div class="memories-gallery animate__animated animate__fadeIn animate__delay-3s">
                     <div class="memory-item">
-                        <img src="assets/images/photo2.jpeg" alt="Memory 1" class="memory-photo">
+                        <div class="memory-item-inner">
+                            <img src="assets/images/real02.png" alt="Memory 1" class="memory-photo real-photo">
+                            <img src="assets/images/art02.png" alt="Memory Art 1" class="memory-photo art-photo">
+                        </div>
                     </div>
                     <div class="memory-item">
-                        <img src="assets/images/photo3.jpeg" alt="Memory 2" class="memory-photo">
+                        <div class="memory-item-inner">
+                            <img src="assets/images/real03.jpeg" alt="Memory 2" class="memory-photo real-photo">
+                            <img src="assets/images/art3.png" alt="Memory Art 2" class="memory-photo art-photo">
+                        </div>
                     </div>
                     <div class="memory-item">
-                        <img src="assets/drawing.jpg" alt="Memory 3" class="memory-photo">
+                        <div class="memory-item-inner">
+                            <img src="assets/images/real04.jpeg" alt="Memory 3" class="memory-photo real-photo">
+                            <img src="assets/images/art04.png" alt="Memory Art 3" class="memory-photo art-photo">
+                        </div>
                     </div>
                     <div class="memory-item">
-                        <img src="assets/images/photo3.jpeg" alt="Memory 4" class="memory-photo">
+                        <div class="memory-item-inner">
+                            <img src="assets/images/real05.jpeg" alt="Memory 4" class="memory-photo real-photo">
+                            <img src="assets/images/art05.png" alt="Memory Art 4" class="memory-photo art-photo">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -166,11 +194,6 @@
                 </div>
             </div>
             
-            <!-- Video button -->
-            <button class="birthday-video-btn animate__animated animate__pulse animate__infinite">
-                <i class="fas fa-video"></i> Watch Your Video
-            </button>
-            
             <!-- Make a wish section -->
             <div class="make-wish-section animate__animated animate__fadeIn animate__delay-5s">
                 <h3>Make a Birthday Wish!</h3>
@@ -181,21 +204,6 @@
             <footer class="birthday-footer">
                 <p>Created with ❤️ just for you</p>
             </footer>
-            
-            <!-- Video modal -->
-            <div class="video-modal">
-                <div class="video-modal-content">
-                    <button class="close-modal-btn">
-                        <i class="fas fa-times"></i>
-                    </button>
-                    <div class="video-container">
-                        <video controls playsinline>
-                            <source src="assets/video.mp4" type="video/mp4">
-                            Your browser doesn't support video playback.
-                        </video>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 

@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Setup countdown and page interactions
         setupCountdown();
         setupPhotoSlider();
-        setupVideoModal();
+        setupPhotoToggle();
         
         // Hide loading screen
         hideLoadingScreen();
@@ -307,32 +307,35 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Setup video modal
-    function setupVideoModal() {
-        const videoBtn = document.querySelector('.video-btn');
-        const videoModal = document.querySelector('.video-modal');
-        const closeModalBtn = document.querySelector('.close-modal-btn');
-        const video = document.querySelector('.video-container video');
+    // Setup photo toggle
+    function setupPhotoToggle() {
+        const toggleButtons = document.querySelectorAll('.photo-toggle-btn');
         
-        if (videoBtn && videoModal) {
-            videoBtn.addEventListener('click', () => {
-                videoModal.classList.add('active');
-            });
-            
-            if (closeModalBtn) {
-                closeModalBtn.addEventListener('click', () => {
-                    videoModal.classList.remove('active');
-                    if (video) video.pause();
-                });
-            }
-            
-            // Close modal on click outside of content
-            videoModal.addEventListener('click', (e) => {
-                if (e.target === videoModal) {
-                    videoModal.classList.remove('active');
-                    if (video) video.pause();
+        toggleButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const view = this.dataset.view;
+                
+                // Update active button
+                toggleButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update app class to show real or art photos
+                if (view === 'art') {
+                    document.getElementById('app').classList.add('show-art');
+                } else {
+                    document.getElementById('app').classList.remove('show-art');
                 }
+                
+                // Store preference in session storage
+                sessionStorage.setItem('photoView', view);
             });
+        });
+        
+        // Check for stored preference
+        const storedView = sessionStorage.getItem('photoView');
+        if (storedView) {
+            const button = document.querySelector(`.photo-toggle-btn[data-view="${storedView}"]`);
+            if (button) button.click();
         }
     }
     

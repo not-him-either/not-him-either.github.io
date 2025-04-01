@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#1a1a2e">
     <meta name="description" content="Special Birthday Countdown">
     <title>Special Birthday Countdown</title>
@@ -91,22 +91,36 @@
                 <div class="photo-section">
                     <h2 class="section-title">Looking Forward To...</h2>
                     
+                    <div class="photo-toggle-container">
+                        <button class="photo-toggle-btn active" data-view="real">
+                            <i class="fas fa-camera"></i> Real
+                        </button>
+                        <button class="photo-toggle-btn" data-view="art">
+                            <i class="fas fa-paint-brush"></i> Art
+                        </button>
+                    </div>
+                    
                     <div class="photo-slider" aria-label="Photo gallery">
                         <div class="photo-slider-inner">
                             <div class="photo-slide active">
-                                <img src="assets/images/photo1.jpeg" alt="Photo 1" loading="lazy">
+                                <img src="assets/images/real01.png" alt="Photo 1" class="real-photo" loading="lazy">
+                                <img src="assets/images/art01.png" alt="Art 1" class="art-photo" loading="lazy">
                             </div>
                             <div class="photo-slide">
-                                <img src="assets/images/photo2.jpeg" alt="Photo 2" loading="lazy">
+                                <img src="assets/images/real02.png" alt="Photo 2" class="real-photo" loading="lazy">
+                                <img src="assets/images/art02.png" alt="Art 2" class="art-photo" loading="lazy">
                             </div>
                             <div class="photo-slide">
-                                <img src="assets/images/photo3.jpeg" alt="Photo 3" loading="lazy">
+                                <img src="assets/images/real03.jpeg" alt="Photo 3" class="real-photo" loading="lazy">
+                                <img src="assets/images/art3.png" alt="Art 3" class="art-photo" loading="lazy">
                             </div>
                             <div class="photo-slide">
-                                <img src="assets/images/photo3.jpeg" alt="Photo 4" loading="lazy">
+                                <img src="assets/images/real04.jpeg" alt="Photo 4" class="real-photo" loading="lazy">
+                                <img src="assets/images/art04.png" alt="Art 4" class="art-photo" loading="lazy">
                             </div>
                             <div class="photo-slide">
-                                <img src="assets/drawing.jpg" alt="Drawing" loading="lazy">
+                                <img src="assets/images/real05.jpeg" alt="Photo 5" class="real-photo" loading="lazy">
+                                <img src="assets/images/art05.png" alt="Art 5" class="art-photo" loading="lazy">
                             </div>
                         </div>
                         <div class="slider-controls">
@@ -127,16 +141,6 @@
                     </div>
                 </div>
                 
-                <div class="video-section">
-                    <div class="video-btn-container">
-                        <button class="video-btn pulse-animation" aria-label="Watch video">
-                            <i class="fas fa-play-circle"></i> Watch Video
-                        </button>
-                        <div class="btn-sparkle sparkle-1"></div>
-                        <div class="btn-sparkle sparkle-2"></div>
-                    </div>
-                </div>
-                
                 <footer class="page-footer">
                     <div class="footer-decoration"></div>
                     <p>Tap anywhere on the page to interact</p>
@@ -148,21 +152,6 @@
                 </footer>
             </div>
         </section>
-
-        <!-- Video Modal -->
-        <div class="video-modal" role="dialog" aria-modal="true" aria-hidden="true">
-            <div class="video-modal-content">
-                <button class="close-modal-btn" aria-label="Close video">
-                    <i class="fas fa-times"></i>
-                </button>
-                <div class="video-container">
-                    <video controls playsinline>
-                        <source src="assets/video.mp4" type="video/mp4">
-                        Your browser doesn't support video playback.
-                    </video>
-                </div>
-            </div>
-        </div>
 
         <!-- Transition Overlay -->
         <div class="transition-overlay" aria-hidden="true">
