@@ -2,58 +2,49 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set a timeout to prevent infinite loading
     const loadingTimeout = setTimeout(() => {
         hideLoadingScreen();
-    }, 5000); // Force hide after 5 seconds if loading takes too long
+    }, 3000); // Reduced timeout from 5s to 3s for faster experience
     
-    // Initialize page elements in order
+    // Initialize page elements in order of importance
     Promise.all([
-        initParticles(),
-        preloadImages()
+        preloadImages(),
+        initParticles()
     ])
     .then(() => {
         // Clear the timeout since loading completed successfully
         clearTimeout(loadingTimeout);
         
         // Setup countdown and page interactions
-        setupCountdown();
-        setupPhotoSlider();
-        setupPhotoToggle();
-        
-        // Hide loading screen
-        hideLoadingScreen();
+        requestAnimationFrame(() => {
+            setupCountdown();
+            hideLoadingScreen();
+            
+            // Defer non-critical functions
+            setTimeout(() => {
+                setupPhotoSlider();
+                setupPhotoToggle();
+                lazyLoadImages();
+            }, 100);
+        });
     })
     .catch(error => {
         console.error('Error loading page elements:', error);
-        // Hide loading screen even if there's an error
         hideLoadingScreen();
     });
     
-    // Initialize particles background
+    // Initialize particles background with reduced particle count
     function initParticles() {
         return new Promise((resolve) => {
             if (typeof particlesJS !== 'undefined') {
                 particlesJS('particles-js', {
                     "particles": {
                         "number": {
-                            "value": 80,
-                            "density": {
-                                "enable": true,
-                                "value_area": 800
-                            }
+                            "value": 50, // Reduced from 80
+                            "density": { "enable": true, "value_area": 800 }
                         },
-                        "color": {
-                            "value": ["#ff69b4", "#8a2be2", "#00bfff"]
-                        },
-                        "shape": {
-                            "type": "circle"
-                        },
-                        "opacity": {
-                            "value": 0.5,
-                            "random": true
-                        },
-                        "size": {
-                            "value": 3,
-                            "random": true
-                        },
+                        "color": {"value": ["#ff69b4", "#8a2be2"]},
+                        "shape": {"type": "circle"},
+                        "opacity": {"value": 0.5, "random": true},
+                        "size": {"value": 3, "random": true},
                         "line_linked": {
                             "enable": true,
                             "distance": 150,
@@ -63,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         },
                         "move": {
                             "enable": true,
-                            "speed": 2,
+                            "speed": 1.5, // Reduced from 2
                             "direction": "none",
                             "random": true,
                             "straight": false,
@@ -74,48 +65,34 @@ document.addEventListener('DOMContentLoaded', function() {
                     "interactivity": {
                         "detect_on": "canvas",
                         "events": {
-                            "onhover": {
-                                "enable": true,
-                                "mode": "bubble"
-                            },
-                            "onclick": {
-                                "enable": true,
-                                "mode": "push"
-                            },
+                            "onhover": {"enable": true, "mode": "bubble"},
+                            "onclick": {"enable": true, "mode": "push"},
                             "resize": true
                         },
                         "modes": {
-                            "bubble": {
-                                "distance": 250,
-                                "size": 6,
-                                "duration": 2,
-                                "opacity": 0.8,
-                                "speed": 3
-                            },
-                            "push": {
-                                "particles_nb": 4
-                            }
+                            "bubble": {"distance": 250, "size": 6, "duration": 2, "opacity": 0.8, "speed": 3},
+                            "push": {"particles_nb": 2} // Reduced from 4
                         }
                     },
-                    "retina_detect": true
+                    "retina_detect": false // Changed from true for better performance
                 });
             }
-            // Resolve even if particlesJS is not available to prevent blocking
-            setTimeout(resolve, 500);
+            // Resolve faster to avoid blocking rendering
+            setTimeout(resolve, 300);
         });
     }
     
-    // Preload images for better performance
+    // Preload only critical images
     function preloadImages() {
         return new Promise((resolve) => {
-            const images = document.querySelectorAll('img');
-            if (images.length === 0) {
+            const criticalImages = document.querySelectorAll('img[fetchpriority="high"]');
+            if (criticalImages.length === 0) {
                 resolve();
                 return;
             }
             
             let loadedCount = 0;
-            const totalImages = images.length;
+            const totalImages = criticalImages.length;
             
             function checkAllImagesLoaded() {
                 if (loadedCount === totalImages) {
@@ -123,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
             
-            images.forEach(img => {
+            criticalImages.forEach(img => {
                 if (img.complete) {
                     loadedCount++;
                     checkAllImagesLoaded();
@@ -139,12 +116,52 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             
-            // Safety timeout in case some images never load
-            setTimeout(resolve, 3000);
+            // Shorter safety timeout
+            setTimeout(resolve, 1500);
         });
     }
     
-    // Setup countdown
+    // Lazy load images
+    function lazyLoadImages() {
+        const lazyImages = document.querySelectorAll('img.lazy');
+        
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            
+            lazyImages.forEach(img => {
+                imageObserver.observe(img);
+            });
+        } else {
+            // Fallback for browsers without Intersection Observer
+            lazyImages.forEach(img => {
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+            });
+        }
+    }
+    
+    // Hide loading screen with optimized transition
+    function hideLoadingScreen() {
+        const loadingScreen = document.querySelector('.loading-screen');
+        if (loadingScreen) {
+            loadingScreen.classList.add('fade-out');
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+                setTimeout(() => loadingScreen.remove(), 100);
+            }, 400);
+        }
+    }
+    
+    // Setup countdown with throttled updates
     function setupCountdown() {
         // Set the birthday date - April 4th of current year
         const currentYear = new Date().getFullYear();
@@ -155,14 +172,19 @@ document.addEventListener('DOMContentLoaded', function() {
             birthdayDate.setFullYear(currentYear + 1);
         }
         
-        // For testing purposes - uncomment to simulate countdown reaching zero
-        // const testDate = new Date();
-        // testDate.setSeconds(testDate.getSeconds() + 10);
-        // birthdayDate.setTime(testDate.getTime());
+        let lastUpdateTime = 0;
+        const updateInterval = 1000; // Update every second
         
-        // Update countdown timer
         function updateCountdown() {
             const now = new Date();
+            const currentTime = now.getTime();
+            
+            // Throttle updates to once per second
+            if (currentTime - lastUpdateTime < updateInterval) {
+                return;
+            }
+            lastUpdateTime = currentTime;
+            
             const diff = birthdayDate - now;
             
             // Check if countdown has reached zero
@@ -204,6 +226,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initial update and start interval
         updateCountdown();
         const countdownInterval = setInterval(updateCountdown, 1000);
+        
+        // Add event listener with passive option for better scroll performance
+        document.addEventListener('scroll', () => {}, {passive: true});
     }
     
     // Setup photo slider
@@ -336,17 +361,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (storedView) {
             const button = document.querySelector(`.photo-toggle-btn[data-view="${storedView}"]`);
             if (button) button.click();
-        }
-    }
-    
-    // Hide loading screen
-    function hideLoadingScreen() {
-        const loadingScreen = document.querySelector('.loading-screen');
-        if (loadingScreen) {
-            loadingScreen.classList.add('fade-out');
-            setTimeout(() => {
-                loadingScreen.remove();
-            }, 500);
         }
     }
 });

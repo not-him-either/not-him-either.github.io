@@ -6,12 +6,36 @@
     <meta name="theme-color" content="#1a1a2e">
     <meta name="description" content="Special Birthday Countdown">
     <title>Special Birthday Countdown</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Mochiy+Pop+P+One&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Preload critical assets -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="assets/images/real01.png" as="image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <!-- Critical CSS inline -->
+    <style>
+        :root {--primary:#ff69b4;--dark:#1a1a2e;--light:#fff}
+        body{margin:0;padding:0;font-family:sans-serif;background-color:var(--dark);color:var(--light);overflow-x:hidden}
+        .loading-screen{position:fixed;top:0;left:0;width:100%;height:100%;background-color:var(--dark);z-index:9999;display:flex;justify-content:center;align-items:center}
+        .loading-content{text-align:center}
+        .heart-loader{width:80px;height:80px;position:relative;animation:pulse 1.2s infinite}
+        @keyframes pulse{0%{transform:scale(.95)}50%{transform:scale(1.1)}100%{transform:scale(.95)}}
+    </style>
+    <!-- Deferred CSS loading -->
+    <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Mochiy+Pop+P+One&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Mochiy+Pop+P+One&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"></noscript>
+    <!-- Load critical icons only -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/solid.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <!-- Add iOS touch icon -->
     <link rel="apple-touch-icon" href="assets/images/touch-icon.png">
+    <!-- Add web app manifest -->
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <div id="app" class="countdown-active">
@@ -103,24 +127,24 @@
                     <div class="photo-slider" aria-label="Photo gallery">
                         <div class="photo-slider-inner">
                             <div class="photo-slide active">
-                                <img src="assets/images/real01.png" alt="Photo 1" class="real-photo" loading="lazy">
-                                <img src="assets/images/art01.png" alt="Art 1" class="art-photo" loading="lazy">
+                                <img src="assets/images/real01.png" alt="Photo 1" class="real-photo" loading="eager" fetchpriority="high" width="320" height="427">
+                                <img src="assets/images/art01.png" alt="Art 1" class="art-photo" loading="lazy" width="320" height="427">
                             </div>
                             <div class="photo-slide">
-                                <img src="assets/images/real02.png" alt="Photo 2" class="real-photo" loading="lazy">
-                                <img src="assets/images/art02.png" alt="Art 2" class="art-photo" loading="lazy">
+                                <img data-src="assets/images/real02.png" alt="Photo 2" class="real-photo lazy" loading="lazy" width="320" height="427">
+                                <img data-src="assets/images/art02.png" alt="Art 2" class="art-photo lazy" loading="lazy" width="320" height="427">
                             </div>
                             <div class="photo-slide">
-                                <img src="assets/images/real03.jpeg" alt="Photo 3" class="real-photo" loading="lazy">
-                                <img src="assets/images/art3.png" alt="Art 3" class="art-photo" loading="lazy">
+                                <img data-src="assets/images/real03.jpeg" alt="Photo 3" class="real-photo lazy" loading="lazy" width="320" height="427">
+                                <img data-src="assets/images/art3.png" alt="Art 3" class="art-photo lazy" loading="lazy" width="320" height="427">
                             </div>
                             <div class="photo-slide">
-                                <img src="assets/images/real04.jpeg" alt="Photo 4" class="real-photo" loading="lazy">
-                                <img src="assets/images/art04.png" alt="Art 4" class="art-photo" loading="lazy">
+                                <img data-src="assets/images/real04.jpeg" alt="Photo 4" class="real-photo lazy" loading="lazy" width="320" height="427">
+                                <img data-src="assets/images/art04.png" alt="Art 4" class="art-photo lazy" loading="lazy" width="320" height="427">
                             </div>
                             <div class="photo-slide">
-                                <img src="assets/images/real05.jpeg" alt="Photo 5" class="real-photo" loading="lazy">
-                                <img src="assets/images/art05.png" alt="Art 5" class="art-photo" loading="lazy">
+                                <img data-src="assets/images/real05.jpeg" alt="Photo 5" class="real-photo lazy" loading="lazy" width="320" height="427">
+                                <img data-src="assets/images/art05.png" alt="Art 5" class="art-photo lazy" loading="lazy" width="320" height="427">
                             </div>
                         </div>
                         <div class="slider-controls">
@@ -162,7 +186,8 @@
         </div>
     </div>
     
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="script.js"></script>
+    <!-- Defer non-critical JavaScript -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
