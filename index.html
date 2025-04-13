@@ -2,192 +2,523 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#1a1a2e">
-    <meta name="description" content="Special Birthday Countdown">
-    <title>Special Birthday Countdown</title>
-    <!-- Preload critical assets -->
-    <link rel="preload" href="styles.css" as="style">
-    <link rel="preload" href="assets/images/real01.png" as="image">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gain Chain AI - Advanced Coding Intelligence</title>
+    <meta name="description" content="Gain Chain AI is a cutting-edge AI code generation and optimization platform that revolutionizes how developers write and maintain code.">
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <!-- Critical CSS inline -->
-    <style>
-        :root {--primary:#ff69b4;--dark:#1a1a2e;--light:#fff}
-        body{margin:0;padding:0;font-family:sans-serif;background-color:var(--dark);color:var(--light);overflow-x:hidden}
-        .loading-screen{position:fixed;top:0;left:0;width:100%;height:100%;background-color:var(--dark);z-index:9999;display:flex;justify-content:center;align-items:center}
-        .loading-content{text-align:center}
-        .heart-loader{width:80px;height:80px;position:relative;animation:pulse 1.2s infinite}
-        @keyframes pulse{0%{transform:scale(.95)}50%{transform:scale(1.1)}100%{transform:scale(.95)}}
-    </style>
-    <!-- Deferred CSS loading -->
-    <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="styles.css"></noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"></noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Mochiy+Pop+P+One&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Mochiy+Pop+P+One&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"></noscript>
-    <!-- Load critical icons only -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/solid.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
-    <!-- Add iOS touch icon -->
-    <link rel="apple-touch-icon" href="assets/images/touch-icon.png">
-    <!-- Add web app manifest -->
-    <link rel="manifest" href="manifest.json">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png">
 </head>
 <body>
-    <div id="app" class="countdown-active">
-        <!-- Loading Screen -->
-        <div class="loading-screen">
-            <div class="loading-content">
-                <div class="heart-loader"></div>
-                <p>Loading countdown...</p>
+    <!-- Header with Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/gainchain-logo.svg" alt="Gain Chain AI Logo">
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul class="nav-links">
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#demo">Playground</a></li>
+                        <li><a href="#integrations">Integrations</a></li>
+                    </ul>
+                </nav>
+                <div class="nav-cta">
+                    <a href="#access" class="btn btn-primary">Get Access</a>
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
-        
-        <!-- Particles background -->
-        <div class="particles-container">
-            <div id="particles-js"></div>
-        </div>
-        
-        <!-- Floating decorative elements -->
-        <div class="floating-elements">
-            <div class="floating-element heart-element">❤️</div>
-            <div class="floating-element star-element">✨</div>
-            <div class="floating-element flower-element">🌸</div>
-            <div class="floating-element sparkle-element">💫</div>
-            <div class="floating-element heart-element">💖</div>
-            <div class="floating-element star-element">⭐</div>
-        </div>
-        
-        <!-- Countdown Section -->
-        <section id="countdown-section">
-            <div class="container">
-                <!-- Decorative header -->
-                <div class="decorative-header">
-                    <div class="header-decoration left"></div>
-                    <h1 class="main-title animate__animated animate__fadeIn">Birthday Countdown</h1>
-                    <div class="header-decoration right"></div>
-                </div>
-                
-                <!-- Personal message -->
-                <div class="personal-message animate__animated animate__fadeIn animate__delay-1s">
-                    <p>A special day is coming for someone amazing...</p>
-                    <div class="message-signature">
-                        <span class="signature-icon">💌</span>
-                    </div>
-                </div>
-                
-                <div class="countdown-wrapper">
-                    <div class="countdown-header">
-                        <div class="countdown-label">Countdown to your special day</div>
-                    </div>
-                    
-                    <div class="timer-container">
-                        <div class="timer-block">
-                            <div class="time-value" id="days">00</div>
-                            <div class="time-unit">Days</div>
-                        </div>
-                        <div class="timer-separator">:</div>
-                        <div class="timer-block">
-                            <div class="time-value" id="hours">00</div>
-                            <div class="time-unit">Hours</div>
-                        </div>
-                        <div class="timer-separator">:</div>
-                        <div class="timer-block">
-                            <div class="time-value" id="minutes">00</div>
-                            <div class="time-unit">Minutes</div>
-                        </div>
-                        <div class="timer-separator">:</div>
-                        <div class="timer-block">
-                            <div class="time-value" id="seconds">00</div>
-                            <div class="time-unit">Seconds</div>
-                        </div>
-                    </div>
-                    
-                    <div class="countdown-caption">
-                        <span class="heartbeat">❤️</span> Until the Special Day <span class="heartbeat">❤️</span>
-                    </div>
-                </div>
+    </header>
 
-                <div class="photo-section">
-                    <h2 class="section-title">Looking Forward To...</h2>
-                    
-                    <div class="photo-toggle-container">
-                        <button class="photo-toggle-btn active" data-view="real">
-                            <i class="fas fa-camera"></i> Real
-                        </button>
-                        <button class="photo-toggle-btn" data-view="art">
-                            <i class="fas fa-paint-brush"></i> Art
-                        </button>
-                    </div>
-                    
-                    <div class="photo-slider" aria-label="Photo gallery">
-                        <div class="photo-slider-inner">
-                            <div class="photo-slide active">
-                                <img src="assets/images/real01.png" alt="Photo 1" class="real-photo" loading="eager" fetchpriority="high" width="320" height="427">
-                                <img src="assets/images/art01.png" alt="Art 1" class="art-photo" loading="lazy" width="320" height="427">
-                            </div>
-                            <div class="photo-slide">
-                                <img data-src="assets/images/real02.png" alt="Photo 2" class="real-photo lazy" loading="lazy" width="320" height="427">
-                                <img data-src="assets/images/art02.png" alt="Art 2" class="art-photo lazy" loading="lazy" width="320" height="427">
-                            </div>
-                            <div class="photo-slide">
-                                <img data-src="assets/images/real03.jpeg" alt="Photo 3" class="real-photo lazy" loading="lazy" width="320" height="427">
-                                <img data-src="assets/images/art3.png" alt="Art 3" class="art-photo lazy" loading="lazy" width="320" height="427">
-                            </div>
-                            <div class="photo-slide">
-                                <img data-src="assets/images/real04.jpeg" alt="Photo 4" class="real-photo lazy" loading="lazy" width="320" height="427">
-                                <img data-src="assets/images/art04.png" alt="Art 4" class="art-photo lazy" loading="lazy" width="320" height="427">
-                            </div>
-                            <div class="photo-slide">
-                                <img data-src="assets/images/real05.jpeg" alt="Photo 5" class="real-photo lazy" loading="lazy" width="320" height="427">
-                                <img data-src="assets/images/art05.png" alt="Art 5" class="art-photo lazy" loading="lazy" width="320" height="427">
-                            </div>
-                        </div>
-                        <div class="slider-controls">
-                            <button class="slider-arrow prev-arrow" aria-label="Previous photo">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <div class="slider-dots" role="tablist">
-                                <span class="dot active" data-index="0" role="tab" aria-selected="true" tabindex="0"></span>
-                                <span class="dot" data-index="1" role="tab" aria-selected="false" tabindex="-1"></span>
-                                <span class="dot" data-index="2" role="tab" aria-selected="false" tabindex="-1"></span>
-                                <span class="dot" data-index="3" role="tab" aria-selected="false" tabindex="-1"></span>
-                                <span class="dot" data-index="4" role="tab" aria-selected="false" tabindex="-1"></span>
-                            </div>
-                            <button class="slider-arrow next-arrow" aria-label="Next photo">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                        </div>
-                    </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Coding <span>Reimagined</span> With Advanced AI</h1>
+                <p class="hero-subtitle">Gain Chain AI transforms how developers write code with intelligent generation, optimization, and insights powered by cutting-edge neural networks.</p>
+                <div class="hero-cta">
+                    <a href="#access" class="btn btn-primary btn-large">Get Early Access</a>
+                    <a href="#demo" class="btn btn-secondary btn-large">Try Demo</a>
                 </div>
-                
-                <footer class="page-footer">
-                    <div class="footer-decoration"></div>
-                    <p>Tap anywhere on the page to interact</p>
-                    <div class="footer-hearts">
-                        <span class="footer-heart">❤️</span>
-                        <span class="footer-heart">❤️</span>
-                        <span class="footer-heart">❤️</span>
-                    </div>
-                </footer>
             </div>
-        </section>
-
-        <!-- Transition Overlay -->
-        <div class="transition-overlay" aria-hidden="true">
-            <div class="loader">
-                <div class="heart-loader"></div>
-                <p>Preparing something special...</p>
+            <div class="hero-image">
+                <img src="images/logo.png" alt="AI Code Generation Interface">
             </div>
         </div>
-    </div>
+        <div class="hero-bg-animation"></div>
+        <div class="code-particles" id="codeParticles"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Future of Development</h2>
+                <p>Code generation that understands your intent and architecture</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Gain Chain AI represents the next leap in AI-powered development tools. Our neural models have been trained on billions of lines of high-quality code and fine-tuned by senior engineers to understand programming concepts at a fundamental level.</p>
+                    <p>Unlike conventional code completion tools, Gain Chain AI comprehends architectural patterns, system design principles, and clean code practices, delivering solutions that seamlessly integrate with your existing codebase.</p>
+                    <p>Whether you're architecting a new system, implementing complex algorithms, or refactoring legacy code, Gain Chain AI accelerates your workflow with intelligent suggestions that feel like they're coming from an experienced teammate.</p>
+                </div>
+                <div class="about-image">
+                    <img src="images/code.png" alt="AI Code Generation">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features section bg-gradient">
+        <div class="container">
+            <div class="section-header light">
+                <h2>Supercharged Development</h2>
+                <p>Revolutionary tools to transform how you write code</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Intelligent Code Generation</h3>
+                    <p>Transform natural language descriptions into production-ready code in seconds with context-aware AI that adapts to your project's architecture and style.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Code Understanding</h3>
+                    <p>Our AI comprehends entire codebases, architectural patterns, and relationships between components to generate contextually appropriate solutions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3>Multi-Language Mastery</h3>
+                    <p>Generate optimized code in JavaScript, TypeScript, Python, Go, Rust, Java, C#, and more with language-specific best practices built-in.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>Code Transformation</h3>
+                    <p>Seamlessly translate between programming languages, refactor existing code, or upgrade legacy systems with our intelligent transformation engine.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Performance Optimization</h3>
+                    <p>Automatically identify optimization opportunities in your code with suggestions that improve execution speed, memory usage, and overall efficiency.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Security Analysis</h3>
+                    <p>Proactively detect and fix security vulnerabilities with AI that understands security patterns and follows OWASP standards and industry best practices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Seamless AI-Powered Workflow</h2>
+                <p>How Gain Chain AI enhances your development process</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number"><span>1</span></div>
+                    <div class="step-content">
+                        <h3>Describe Your Intent</h3>
+                        <p>Use natural language to explain what you need, from simple functions to complex components or entire system architectures.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number"><span>2</span></div>
+                    <div class="step-content">
+                        <h3>Neural Processing</h3>
+                        <p>Our advanced neural networks analyze your requirements, evaluate multiple implementation options, and generate code optimized for your specific context.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number"><span>3</span></div>
+                    <div class="step-content">
+                        <h3>Interactive Refinement</h3>
+                        <p>Review the generated code, ask for explanations, or request modifications through our conversational interface to fine-tune the output.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number"><span>4</span></div>
+                    <div class="step-content">
+                        <h3>Seamless Integration</h3>
+                        <p>Integrate the generated code into your project through our IDE extensions, API, or direct copy-paste with formatting and dependencies automatically managed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Demo Section -->
+    <section id="demo" class="demo section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Gain Chain AI in Action</h2>
+                <p>Experience the power of advanced code generation</p>
+            </div>
+            <div class="demo-container">
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <span class="terminal-button"></span>
+                        <span class="terminal-button"></span>
+                        <span class="terminal-button"></span>
+                        <span class="terminal-title">Gain Chain AI Terminal</span>
+                    </div>
+                    <div class="terminal-body" id="typingDemo">
+                        <div class="command-line">
+                            <span class="prompt">user@gainchain:~$</span>
+                            <span class="command"> Create a React component for a data visualization dashboard with dark mode</span>
+                        </div>
+                        <div class="response" id="codeResponse">
+                            <pre><code class="language-javascript">import React, { useState, useEffect } from 'react';
+import { 
+  LineChart, BarChart, PieChart, 
+  ResponsiveContainer, Tooltip 
+} from 'recharts';
+import './DashboardView.css';
+
+const DashboardView = ({ 
+  data, 
+  timeRange = '7d', 
+  refreshInterval = 60000 
+}) => {
+  const [metrics, setMetrics] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  
+  useEffect(() => {
+    // Check system preference for dark mode
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedMode = localStorage.getItem('dashboardTheme');
     
-    <!-- Defer non-critical JavaScript -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
-    <script src="script.js" defer></script>
+    if (savedMode === 'dark' || (!savedMode && prefersDark)) {
+      setIsDarkMode(true);
+      document.body.classList.add('dashboard-dark-mode');
+    }
+    
+    // Initial data load
+    fetchDashboardData();
+    
+    // Set up polling interval
+    const interval = setInterval(fetchDashboardData, refreshInterval);
+    
+    return () => clearInterval(interval);
+  }, [timeRange, refreshInterval]);
+  
+  const fetchDashboardData = async () => {
+    setIsLoading(true);
+    try {
+      // In a real app, fetch from your API
+      const response = await fetch(`/api/metrics?timeRange=${timeRange}`);
+      const data = await response.json();
+      setMetrics(data);
+    } catch (error) {
+      console.error("Failed to fetch dashboard data:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
+  const toggleDarkMode = () => {
+    const newMode = !isDarkMode;
+    setIsDarkMode(newMode);
+    
+    if (newMode) {
+      document.body.classList.add('dashboard-dark-mode');
+      localStorage.setItem('dashboardTheme', 'dark');
+    } else {
+      document.body.classList.remove('dashboard-dark-mode');
+      localStorage.setItem('dashboardTheme', 'light');
+    }
+  };
+  
+  if (isLoading && !metrics) {
+    return (
+      <div className={`dashboard-loading ${isDarkMode ? 'dark' : 'light'}`}>
+        Loading dashboard data...
+      </div>
+    );
+  }
+  
+  return (
+    <div className={`dashboard-container ${isDarkMode ? 'dark' : 'light'}`}>
+      <div className="dashboard-header">
+        <h2>Performance Metrics</h2>
+        <div className="dashboard-actions">
+          <select 
+            value={timeRange}
+            onChange={(e) => setTimeRange(e.target.value)}
+            className="time-range-selector"
+          >
+            <option value="24h">Last 24 Hours</option>
+            <option value="7d">Last 7 Days</option>
+            <option value="30d">Last 30 Days</option>
+            <option value="90d">Last Quarter</option>
+          </select>
+          
+          <button 
+            className="theme-toggle-btn"
+            onClick={toggleDarkMode}
+            aria-label="Toggle dark mode"
+          >
+            {isDarkMode ? '🌙' : '☀️'}
+          </button>
+        </div>
+      </div>
+      
+      <div className="dashboard-grid">
+        {/* Key Metrics Summary */}
+        <div className="dashboard-card summary-card">
+          <h3>Key Metrics</h3>
+          <div className="metrics-summary">
+            {metrics.summary.map(metric => (
+              <div className="metric-item" key={metric.id}>
+                <span className="metric-label">{metric.label}</span>
+                <span className="metric-value">{metric.value}</span>
+                <span className={`metric-change ${metric.trend}`}>
+                  {metric.change >= 0 ? '+' : ''}{metric.change}%
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Line Chart */}
+        <div className="dashboard-card chart-card">
+          <h3>Traffic Overview</h3>
+          <ResponsiveContainer width="100%" height={250}>
+            <LineChart data={metrics.traffic}>
+              <Tooltip 
+                contentStyle={{ 
+                  backgroundColor: isDarkMode ? '#1a1a2e' : '#fff',
+                  color: isDarkMode ? '#fff' : '#333'
+                }} 
+              />
+              {/* Additional chart configuration */}
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+        
+        {/* Additional charts would go here */}
+      </div>
+    </div>
+  );
+};
+
+export default DashboardView;</code></pre>
+                            <div class="terminal-cursor"></div>
+                        </div>
+                        <div class="command-line">
+                            <span class="prompt">user@gainchain:~$</span>
+                            <span class="command"> Add TypeScript types and implement error handling</span>
+                        </div>
+                        <div class="response">
+                            <span class="ai-thinking">Processing request...</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-cta">
+                    <a href="#access" class="btn btn-primary">Try Gain Chain AI</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Team</h2>
+                <p>The engineers behind Gain Chain AI</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="images/dev1.png" alt="Team Member">
+                    </div>
+                    <h3>Alex Chen</h3>
+                    <p class="member-role">Chief AI Architect</p>
+                    <p class="member-bio">Former ML Research Lead with 10+ years of experience in neural code models and transformer architectures.</p>
+                    <div class="member-social">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="images/dev2.png" alt="Team Member">
+                    </div>
+                    <h3>Sarah Rodriguez</h3>
+                    <p class="member-role">Lead Backend Engineer</p>
+                    <p class="member-bio">Systems architect specializing in scalable AI infrastructure with experience at major cloud providers.</p>
+                    <div class="member-social">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="images/dev3.png" alt="Team Member">
+                    </div>
+                    <h3>Marcus Johnson</h3>
+                    <p class="member-role">Product Lead</p>
+                    <p class="member-bio">Former developer advocate turned product strategist with a passion for AI-powered developer tools.</p>
+                    <div class="member-social">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integrations Section -->
+    <section id="integrations" class="integration section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Seamless Integration</h2>
+                <p>Works with your favorite development tools</p>
+            </div>
+            <div class="integration-logos">
+                <div class="logo-item"><img src="images/55.png" alt="VS Code"></div>
+                <div class="logo-item"><img src="images/55.png" alt="IntelliJ"></div>
+                <div class="logo-item"><img src="images/55.png" alt="GitHub"></div>
+                <div class="logo-item"><img src="images/55.png" alt="GitLab"></div>
+                <div class="logo-item"><img src="images/55.png" alt="npm"></div>
+                <div class="logo-item"><img src="images/55.png" alt="Docker"></div>
+            </div>
+            <div class="integration-cta">
+                <a href="#docs" class="btn btn-secondary">View Integration Docs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Access Section -->
+    <section id="access" class="access section bg-gradient">
+        <div class="container">
+            <div class="waitlist-content">
+                <div class="section-header light">
+                    <h2>Get Early Access</h2>
+                    <p>Join our private beta program and be among the first to experience Gain Chain AI</p>
+                </div>
+                <form id="access-form" class="waitlist-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Your Role</label>
+                        <select id="role" name="role" required>
+                            <option value="" disabled selected>Select your role</option>
+                            <option value="developer">Software Developer</option>
+                            <option value="engineering-manager">Engineering Manager</option>
+                            <option value="tech-lead">Tech Lead</option>
+                            <option value="student">CS Student</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="use-case">Primary Use Case</label>
+                        <select id="use-case" name="use-case" required>
+                            <option value="" disabled selected>How will you use Gain Chain AI?</option>
+                            <option value="app-development">Application Development</option>
+                            <option value="prototyping">Rapid Prototyping</option>
+                            <option value="refactoring">Code Refactoring</option>
+                            <option value="learning">Learning New Languages</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-large">Request Access</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <img src="images/gainchain-logo.svg" alt="Gain Chain AI Logo">
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-nav-column">
+                        <h4>Product</h4>
+                        <ul>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#demo">Demo</a></li>
+                            <li><a href="#pricing">Pricing</a></li>
+                            <li><a href="#roadmap">Roadmap</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-nav-column">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#docs">Documentation</a></li>
+                            <li><a href="#tutorials">Tutorials</a></li>
+                            <li><a href="#api">API Reference</a></li>
+                            <li><a href="#examples">Examples</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-nav-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#team">Team</a></li>
+                            <li><a href="#careers">Careers</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-nav-column">
+                        <h4>Connect</h4>
+                        <div class="social-links">
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Gain Chain AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
 </body>
 </html>
